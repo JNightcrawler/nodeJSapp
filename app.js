@@ -16,6 +16,6 @@ res.end(JSON.stringify(req.body))
 })
 
 
-app.listen(port,function(){
-console.log(port);
+app.listen(process.env.PORT || 3000,function(){
+//console.log(port);
 });
