@@ -1,12 +1,21 @@
-const http = require('http');
-const port = process.env.PORT || 3000
+var http= require('http');
+var path =require('path');
+var exp =require('express');
+var bodyparser=require('body-parser');
+var app =exp();
+ 
+var port =process.env.port||3000
+app.use(bodyparser())
+console.log(__dirname);
+app.get('/',function(req,res){
+    res.sendFile('index.html',{root:path.join(__dirname,'./frontendTest')});
 
-const server = http.createServer((req, res) => {
-  res.statusCode = 200;
-  res.setHeader('Content-Type', 'text/html');
-  res.end('<h1>Hello World</h1>');
 });
+app.post('/dd',function(req,res){
+res.end(JSON.stringify(req.body))
+})
 
-server.listen(port,() => {
-  console.log(`Server running at port `+port);
+
+app.listen(port,function(){
+console.log(port);
 });
